@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>給与計算用電卓</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="calculator-panel" aria-labelledby="app-title">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">Part-time wage calculator</p>
+            <h1 id="app-title">給与計算用電卓</h1>
+          </div>
+          <button class="icon-button" type="button" id="resetButton" aria-label="入力をリセット" title="入力をリセット">
+            ↺
+          </button>
+        </div>
+
+        <form id="calculatorForm" class="input-grid">
+          <label>
+            <span>時給</span>
+            <div class="input-with-unit">
+              <input id="hourlyWage" name="hourlyWage" type="number" min="0" inputmode="numeric" value="1200" />
+              <span>円</span>
+            </div>
+          </label>
+
+          <label>
+            <span>勤務日数</span>
+            <div class="input-with-unit">
+              <input id="workDays" name="workDays" type="number" min="0" inputmode="numeric" value="12" />
+              <span>日</span>
+            </div>
+          </label>
+
+          <label>
+            <span>1日の勤務時間</span>
+            <div class="time-row">
+              <div class="input-with-unit">
+                <input id="workHours" name="workHours" type="number" min="0" inputmode="numeric" value="6" />
+                <span>時間</span>
+              </div>
+              <div class="input-with-unit">
+                <input id="workMinutes" name="workMinutes" type="number" min="0" max="59" inputmode="numeric" value="0" />
+                <span>分</span>
+              </div>
+            </div>
+          </label>
+
+          <label>
+            <span>1日の休憩</span>
+            <div class="input-with-unit">
+              <input id="breakMinutes" name="breakMinutes" type="number" min="0" inputmode="numeric" value="45" />
+              <span>分</span>
+            </div>
+          </label>
+
+          <label>
+            <span>残業時間/月</span>
+            <div class="input-with-unit">
+              <input id="overtimeHours" name="overtimeHours" type="number" min="0" step="0.25" inputmode="decimal" value="0" />
+              <span>時間</span>
+            </div>
+          </label>
+
+          <label>
+            <span>残業割増</span>
+            <div class="input-with-unit">
+              <input id="overtimeRate" name="overtimeRate" type="number" min="100" inputmode="numeric" value="125" />
+              <span>%</span>
+            </div>
+          </label>
+
+          <label>
+            <span>深夜時間/月</span>
+            <div class="input-with-unit">
+              <input id="lateNightHours" name="lateNightHours" type="number" min="0" step="0.25" inputmode="decimal" value="0" />
+              <span>時間</span>
+            </div>
+          </label>
+
+          <label>
+            <span>深夜割増</span>
+            <div class="input-with-unit">
+              <input id="lateNightRate" name="lateNightRate" type="number" min="0" inputmode="numeric" value="25" />
+              <span>%</span>
+            </div>
+          </label>
+
+          <label>
+            <span>交通費/日</span>
+            <div class="input-with-unit">
+              <input id="transportPerDay" name="transportPerDay" type="number" min="0" inputmode="numeric" value="0" />
+              <span>円</span>
+            </div>
+          </label>
+
+          <label>
+            <span>その他手当/月</span>
+            <div class="input-with-unit">
+              <input id="allowance" name="allowance" type="number" min="0" inputmode="numeric" value="0" />
+              <span>円</span>
+            </div>
+          </label>
+
+          <label>
+            <span>控除/月</span>
+            <div class="input-with-unit">
+              <input id="deduction" name="deduction" type="number" min="0" inputmode="numeric" value="0" />
+              <span>円</span>
+            </div>
+          </label>
+
+          <label>
+            <span>税率の目安</span>
+            <div class="input-with-unit">
+              <input id="taxRate" name="taxRate" type="number" min="0" max="100" inputmode="numeric" value="0" />
+              <span>%</span>
+            </div>
+          </label>
+        </form>
+      </section>
+
+      <section class="result-panel" aria-live="polite">
+        <div class="net-pay">
+          <span>手取り見込み</span>
+          <strong id="netPay">0円</strong>
+        </div>
+
+        <dl class="summary-list">
+          <div>
+            <dt>総支給</dt>
+            <dd id="grossPay">0円</dd>
+          </div>
+          <div>
+            <dt>基本給</dt>
+            <dd id="basePay">0円</dd>
+          </div>
+          <div>
+            <dt>割増分</dt>
+            <dd id="premiumPay">0円</dd>
+          </div>
+          <div>
+            <dt>交通費・手当</dt>
+            <dd id="extraPay">0円</dd>
+          </div>
+          <div>
+            <dt>税額目安</dt>
+            <dd id="estimatedTax">0円</dd>
+          </div>
+          <div>
+            <dt>控除合計</dt>
+            <dd id="totalDeduction">0円</dd>
+          </div>
+        </dl>
+
+        <div class="details">
+          <p id="totalHours">月間勤務時間: 0時間</p>
+          <p>税金や社会保険は勤務先の計算方法で変わります。</p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
